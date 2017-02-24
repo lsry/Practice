@@ -6,6 +6,12 @@
 import java.util.Arrays;
 public class Sort
 {
+	/**
+	*归并排序
+	*@param a 排序的数组
+	*@param first 数组首元素索引
+	*@param end 数组尾元素索引
+	*/
 	public static int[] mergeSorting(int[] a,int first,int end){
 		if (first<end)
 		{
@@ -72,9 +78,48 @@ public class Sort
 		return a;
 	}
 
+	/**
+	*插入排序
+	*@param a 排序的数组
+	*@param end 数组尾元素索引
+	*/
+	public static int[] insertSorting(int[] a,int end){
+		if(end <= 0)
+			return a;
+		int temp = end-1;
+		insertSorting(a,temp);
+		insert(a,end);
+		return a;
+	}
+
+	/**
+	*将具有index个元素的数组中的尾元素插入到前面index-1个元素中合适的位置
+	*其中index个元素已经从小到大排好序
+	*@param a 排序的数组
+	*@param index 数组尾元素索引
+	*/
+	public static int[] insert(int[] arr,int index){
+		if (index <= 0 )
+		{
+			return arr;
+		}
+		for (int x = index ; x>=0 ; x-- )
+		{
+			int i = x-1;
+		    int key = arr[x];
+		    while (i>=0 && arr[i]>=arr[x])
+		    {
+			    arr[i+1] = arr[i];
+		   	    i--;
+		    }
+		    arr[i+1] = key;
+		}
+		return arr;
+	}
+
 	public static void main(String[] args){
-		int[] a = new int[]{9,8,7,6,5,4,3,2,1,0};
-		mergeSorting(a,0,a.length-1);
+		int[] a = new int[]{5,4,2,7,9,0,33,23,56};
+		insertSorting(a,a.length-1);
 		System.out.println(Arrays.toString(a));
 	}
 }
