@@ -8,4 +8,4 @@
 
 ## LeetCode
 > 1. Two Sum
-2. Integer Reverse
+>2. Integer Reverse
