@@ -53,7 +53,7 @@ forward=(A[i]+B[i]+forward)/2
 $Θ(n^3)$
 
 #### 2.2-2
-1. 伪代码：
+1. 伪代码：   
 
 
     ChooseSort(A)                       时间          次数
@@ -63,6 +63,7 @@ $Θ(n^3)$
           if key > A[j]                 c4           (2 n-1)和(j-1)
             交换A[j]与key               c5            (2 n-1)和(j-1)
         A[i] = key                      c6            n-1
+
 
 2. [选择排序代码](ChooseSort.java)
 3. 循环不变式：前面已经排好序的数字序列
