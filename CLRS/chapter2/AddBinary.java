@@ -11,7 +11,7 @@ public class  AddBinary
 		{
 			c[i+1]=(a[i]+b[i]+key)%2;
 			//if((a[i]&key|b[i]&key|a[i]&b[i])==1)
-			//	key=1;   //Ҳ����
+			//	key=1;   //加法器原理 利用位运算
 			key=(a[i]+b[i]+key)/2;
 			System.out.println(c[i+1]);
 		}
@@ -20,7 +20,7 @@ public class  AddBinary
 			System.out.print(cv);
 		System.out.println();
 	}
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		int[] a={0,1,1,0};
 		int[] b={1,1,1,0};
