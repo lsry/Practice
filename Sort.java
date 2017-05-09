@@ -119,7 +119,7 @@ public class Sort
 
 	public static void main(String[] args){
 		int[] a = new int[]{5,4,2,7,9,0,33,23,56};
-		insertSorting(a,a.length-1);
+		mergeSorting(a,0,a.length-1);
 		System.out.println(Arrays.toString(a));
 	}
 }
