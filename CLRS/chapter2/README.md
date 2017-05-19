@@ -154,9 +154,10 @@ $Θ(n^3)$
                 A[k]=key
 
 2. 证明：  
- T(n)=n(lgn+n)=Θ(n^2)
+ T(n)=n(lgn+n)=Θ(n^2)  
 
- #### 2.3-7
+#### 2.3-7
+
      SEARCH(S,x)
      for j=1 to S.length
          k=BINARYS(S,x-S[j])
