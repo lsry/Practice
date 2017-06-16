@@ -82,6 +82,7 @@ f(n) = ω(g(n)) -> 任意 c2,n2 >0 when n>=n2,f(n) > c2g(n)
 
 #### 3.2-2
 a^(lob(c)) = a^((loa(c))/(loa(b))) = (a^(loa(c)))^(1/(loa(b))) = c^(lob(a))  
+注：loa(b) 以a为底b的对数
 
 #### 3.2-3
 1. lg(n!) = lg((2πn)^0.5(n/e)^n(1+Θ(1/n)))  
@@ -106,3 +107,25 @@ a^(lob(c)) = a^((loa(c))/(loa(b))) = (a^(loa(c)))^(1/(loa(b))) = c^(lob(a))
 代入方程可得
 
 #### 3.2-7
+当 i=0 , Fi = 0 ; i=1 , Fi = 1成立；  
+假设当i=n 或者 n-1 时成立，当i=n+1:   
+![](img/327.png)
+
+#### 3.2-8
+klnk = Θ(n) -> c1n <= klnk <= c2n  
+c1n/lnk <= k <= c2n/lnk  
+k = Θ(n/lnn)
+
+### 思考题
+#### 3-1
+a.  
+
+    k >= d
+    Σa_in^i <= cn^k
+    c >= Σa_in^{i-k} = Σ(a_i/(n^{k-i}))
+    c >= 1
+    p(n) = Θ(n^k)
+
+b , c , d, e同理
+
+#### 3-2
