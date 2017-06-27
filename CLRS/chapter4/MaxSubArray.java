@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class MaxSubArray 
 {
 	/**
@@ -64,12 +65,15 @@ public class MaxSubArray
 
 	public static void main(String[] args) 
 	{
-		int[] arr = new int[]{13,-3,-25,20,-3,-16,-23,18,20,-7,
-			                  12,-5,-22,15,-4,7,10,34,90,-2,
-			                  -5,-3,78,-21,-23,23,12,14,24,15,
-		                      21,34,15,-21,12,-43,-56,-14,12,10};
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0;i<n;i++)
+		{
+			arr[i] = (int)(Math.random()*100-50);
+		}
 		long start = System.currentTimeMillis();
-		int[] result = findMaxSubArray(arr,0,39);
+		int[] result = findMaxSubArray(arr,0,n-1);
 		long end = System.currentTimeMillis();
 		System.out.println("left: " + result[0]);
 		System.out.println("right: " + result[1]);
