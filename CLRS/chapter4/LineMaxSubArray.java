@@ -11,7 +11,7 @@ public class LineMaxSubArray
 	    int left = 0;          //left:最大子数组左边索引
 		int right = 0;         //right:最大子数组右边索引
 		int msum = 0;          //msum:最大子数组的和
-		int cur = 0;           //cur:子数组的和为正值时的左边索引值（最大子数组可能的左边索引值）
+		int cur = 0;           //cur:子数组的和为正值时的左边索引值（可能的最大子数组的左边索引值）
 		int sum = 0;           //sum:以此计算子数组和
         for (int i = 0;i <= high;i++)
         {
