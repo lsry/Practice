@@ -2,8 +2,8 @@ public class OrdMartixMul
 {
 	/**
 	*普通矩阵乘法，时间复杂度θ(n^3)
-	* @parm A[m][n] 左矩阵A
-	* @parm B[n][p] 右矩阵B
+	* @param A[m][n] 左矩阵A
+	* @param B[n][p] 右矩阵B
 	*/
 	public static int[][] martixMul(int A[][],int m,int n,int B[][],int p){
 	    int[][] C = new int[m][p];
