@@ -1,7 +1,7 @@
 public class RecMatrixMul 
 {
 	/**
-	* 递归求解矩阵乘法，时间复杂度θ（n^3)
+	* 递归求解矩阵乘法，时间复杂度θ(n^3)
 	* T(n) = 8T(n/2) + θ(n^2)
 	*/
 
@@ -15,16 +15,12 @@ public class RecMatrixMul
 	* @param b 矩阵C的行首值
 	*/
 	private static void addMatrix(int[][] A,int n,int[][] B,int[][] C,int a,int b){
-		int b1 = b;
 	    for (int i = 0 ; i < n ; i++ )
 	    {
 			for (int j = 0; j < n ; j++ )
 			{
-				C[a][b1] = A[i][j] + B[i][j];
-				b1++;
+				C[a+i][b+j] = A[i][j] + B[i][j];
 			}
-			a++;
-			b1 = b;
 	    }
 	} 
 
@@ -39,6 +35,7 @@ public class RecMatrixMul
 	* @param C[][] 结果矩阵C
 	* @param i 矩阵C的列首值
 	* @param j 矩阵C的行首值
+	* @param n 矩阵维数
 	*/
     public static boolean mulMatrixRec(int[][] A,int a,int b,int n,
 		                     int[][] B,int e,int f,
