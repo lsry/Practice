@@ -2,7 +2,7 @@ public class Heap
 {
     private final static int ARRAY_LENGTH = 50;       //可容纳元素数
 	private int heap_size;                            //已经容纳元素数
-	private int[] heapArray;
+	private int[] heapArray;                          //存放堆的空间
 
     /*
 	* @param arr[] 传入的数组
@@ -125,6 +125,9 @@ public class Heap
 		heap_size = heapSize;
 	}
 
+    /*
+	* 显示当前堆中的所有元素
+	*/
 	public void display(){
 	    for (int i = 0;i < heap_size ;i++)
 	    {
