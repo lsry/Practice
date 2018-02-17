@@ -117,3 +117,139 @@ T(n) = O(lgn)
 ### 6.5 优先队列     
 
 #### 6.5-1
+![651](img/651.jpg)
+
+#### 6.5-2
+![652](img/652.jpg)
+
+#### 6.5-3
+
+    HEAP-MINMUM(A)
+    return A[1]
+
+    HEAP-EXTRACT-MIN(A)
+    if heap-size < 1
+      error "heap underflow"
+    min = A[1]
+    exchange A[1] and A[heap-size]     
+    heap-size = heap-size-1
+    MINHEAPIFY(A,1)
+    return min     
+
+    HEAP-DECREASE-KEY(A,i,key)
+    if i < 1 || i > heap-size
+      error "wrong i"
+    else if key > A[i]   
+      error "needn't decrease"    
+    else
+      A[i] = key    
+      while i > 1 && A[i] < A[PARENT(i)]
+        exchange A[i] and A[PARENT(i)]  
+        i = PARENT(i)     
+
+    MIN-HEAP-INSERT(A,key)
+    heap-size = heap-size + 1
+    A[heap-size] = +∞   
+    HEAP-DECREASE-KEY(A,heap-size,key)   
+
+#### 6.5-4
+首先数组会在此初始化一个值，如果要插入的值过小，则没办法正确的插入该值，通常初始化为0，如插入负数，就因为在HEAP-INCREASE-KEY中判断比原值小，而无法插入。另外如果数组没有初始化一个值，就会产生错误，因此此处设置比key小即可(key' <= key - 1)。   
+
+#### 6.5-5
+证明：
+* 初始化：第一次循环前，由于A[i]增大为key，所以A[i]及其子树满足最大堆性质，但可能A[i] > A[parent(i)],仅此一点不满足最大堆性质；    
+* 保持：在第i次迭代前，A[i]及其子树满足最大堆性质，A[i]大于A[parent(i)]，在i次迭代后，两个值交换，A[i]及其子树满足最大堆性质；   
+* 终止，这时A[i]来到了根部或者A[i]≤A[parent(i)]，那么整个树满足最大堆性质，A[i]到了合适的位置。    
+
+#### 6.5-6
+
+    while i > 1 and A[i] > A[PARENT(i)]
+      A[i] = A[PARENT(i)]
+      i = PARENT(i)
+    A[i] = key   
+
+#### 6.5-7  
+1. 先进先出队列：给予每个入队的一个优先级，先进的最大，然后构造最大优先队列，出队列时调用HEAP-EXTRACT-MIN即可
+
+2. 栈：给予每个入队的一个优先级，先进的最小，然后构造最大优先队列
+
+#### 6.5-8
+
+    HEAP-DELETE(A,i)
+    if i < 1 || i > heap-size
+      error "wrong index"  
+    temp = A[i]
+    A[i] = A[heap-size]
+    heap-size = heap-size - 1
+    MAXHEAPIFY(A,i)   
+    return temp     
+
+#### 6.5-9
+
+    MERGE-K-LIST(A[1,...,k],n)
+    以A[j]的第一个元素构造一个最小堆
+    let B[n] a new array
+    for i = 1 to n
+      B[i] = 堆的第一个元素
+      将对应链表的下一个元素补充到堆的第一个位置
+      MINHEAPIFY()     //维护堆的性质
+
+### 思考题
+
+#### 6-1
+**a.** 不相同，如输入数据1,2,3,4,5     
+BUILD-MAX-HEAP : ![61a1](img/61a1.jpg)，BUILD-MAX-HEAP' : ![61a2](img/61a2.jpg)      
+
+**b.**   
+在最坏情况下，每个元素都要上升当前树的高度，才能达到合适的位置，所以：![61b](img/61b.gif)
+
+#### 6-2
+**a.** 按顺序依次存放在数组中，其中 i*d-d+2 ~ i*d+1 为元素i的子元素，父元素求法如下：
+
+    PARENT(i,d)
+    if i == 1  
+      error "No parent"
+    j = i/d    
+    if d*j-d+2 <= i and i <= j*d+1
+      return j
+    else
+      return j+1
+
+**b.** ![62b](img/62b.gif)   
+
+**c.** ![62c](img/62c.gif)
+
+    EXTRACT-MAX(A)
+    max = A[1]
+    A[1] = A[size]
+    size = size - 1
+    MAXHEAPIFY(A,1)
+    return max   
+
+**d.**  ![62c](img/62c.gif)
+
+    INSERT(A,key)
+    size = size + 1
+    A[size] = key   
+    if size == 1
+      return   
+    i = size   
+    while i > 1 and A[i] > A[PARENT(i)]
+      exchange A[i] and A[PARENT(i)]
+      i = PARENT(i)
+
+**e.** ![62c](img/62c.gif)
+
+    INCREASE-KEY(A,i,key)
+    if i < 1 or i > size
+      error "wrong index"
+    else if A[i] > key   
+      error "wrong key"   
+    else
+      A[i] = key
+      while i > 1 and A[i] > A[PARENT(i)]
+        exchange A[i] and A[PARENT(i)]
+        i = PARENT(i)
+
+#### 6-3
+**a.**
