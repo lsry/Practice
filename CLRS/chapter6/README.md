@@ -252,4 +252,74 @@ BUILD-MAX-HEAP : ![61a1](img/61a1.jpg)，BUILD-MAX-HEAP' : ![61a2](img/61a2.jpg)
         i = PARENT(i)
 
 #### 6-3
-**a.**
+**a.** ![63a](img/63a.gif)     
+
+**b.**    
+1. 假设存在Y[i,j] < ∞，因为Y[1,1] = ∞，Y[1,j] > Y[1,1] = ∞ ，Y[i,1] > Y[1,1] = ∞ ，Y[i,j] > Y[i,1]  = ∞ ，与假设矛盾，所以矩阵全为∞ ，因此为空。     
+
+2. 假设存在Y[i,j] = ∞，因为Y[m,n] < ∞，Y[1,n] < Y[m,n] < ∞ ，Y[m,1] < Y[m,n] < ∞ ，Y[i,j] < Y[i,n]  < ∞ ，与假设矛盾，因此为满。      
+
+**c.**   
+
+    //将A[i][j]调整到合适的地方
+    MIN-IFY(A[m][n],i,j)
+    //若左边小于当前元素，则交换
+    if j+1 <= n and i+1 <= m and A[i][j+1] != ∞ and A[i+1][j] != ∞ and A[i][j+1] < A[i][j] and A[i][j+1] < A[i+1][j]    
+      exhange A[i][j] and A[i][j+1]
+      MIN-IFY(A[m][n],i,j+1)
+    //若下边小于当前元素，则交换
+    else if A[i][j+1] > A[i+1][j] and A[i+1][j] < A[i][j]
+      exhange A[i][j] and A[i+1][j]
+      MIN-IFY(A[m][n],i+1,j)
+    else
+      end
+
+    EXTRACT-MIN(A[m][n])
+    min = A[1][1]    
+    A[1][1] = A[m][n]   
+    A[m][n] = ∞      
+    MIN-IFY(A[m][n],1,1)
+    return min    
+
+T(p) = T(p-1) + O(1)     
+T(p) = O(p) = O(m+n)        
+
+**d.**  
+
+    INSERT(A[m][n],key)   
+    i = 1  
+    //在第一行找到合适的位置
+    while A[1][i] < key and i <= n
+      i = i + 1
+    if i+1 <= n and A[1][i+1] == ∞
+      A[1][i+1] = key  
+      return   
+    j = 1
+    //在i列找到合适的行
+    while A[j][i] < key and j <= m
+      j = j + 1
+    if A[j+1][i] = ∞  
+      A[j+1][i] = key    
+
+**e.**  
+
+    SORT(A[n][n])  
+    set a new array B[n^2]   
+    for i = 1 to n^2   
+      B[i] = A[1][1]
+      A[1][1] = A[n][n]
+      A[n][n] = ∞
+      MIN-IFY(A[n][n],1,1)   
+
+**f.**   
+
+    SEARCH(A[m][n],key)  
+    i = m,j = 1  
+    while i > 0 and A[i][j] <= key  and j <= n  
+      if A[i][j] == key
+        return [i,j]  
+      else if A[i][j] < key and j < n  
+        j = j + 1
+      else   
+        i = i - 1
+    error "Mot exist key"
