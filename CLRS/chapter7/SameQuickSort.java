@@ -8,8 +8,8 @@ public class SameQuickSort
 	/**
 	* 交换数组两个位置中的值
 	* @param arr 需要交换的数组
-	* @param x 数组首元素索引
-	* @param y 数组尾元素索引
+	* @param x 第一个数组元素索引
+	* @param y 第二个数组尾元素索引
 	*/
 	public static void swap(int[] arr,int x,int y){
 	    int d = arr[x];
