@@ -110,7 +110,87 @@
 |P = |1/4|1/2|1/4|      
 
 E[x] = 1  
-E[x^2] = 1*1/2 + 4*1/4 = 3/2     
+E[x^2] = 1 * 1/2 + 4 * 1/4 = 3/2     
 E^2[X] = 1       
 
 #### 8.4-4      
+设定n个桶，每一个点落入到对应桶中所对应的面积应该为总面积的1/n，由于概率与d有关，因此将圆分成n个环，每个环的面积为 pi/n, 所以第i个环半径为 sqrt(1/n) .   
+
+    SORT(A)
+      n = A.length
+      let B[0,...,n-1] be a new array
+      for i = 0 to n-1
+        make B[i] be a empty list
+      for i = 1 to n
+        let k = A[i].x^2 + A[i].y^2
+        insert A[i] to B[k/n]   
+      for i = 0 to n-1
+        sort B[i]    
+      contact the list B[0],...,B[n-1]   
+
+#### 8.4-5    
+在 n * O(1) = O(n) 时间内找到，然后利用桶排序，得到时间为 O(n)      
+
+    SORT(A)
+    n = A.length
+    let B[0,...,n-1] be a new array
+    for i = 0 to n-1
+      make B[i] be a empty list
+    k = (max(A) - min(A))/n  
+    for i = 1 to n
+      insert A[i] to B[k * (A[i] - min(A))]  
+    for i = 0 to n-1
+      sort B[i]    
+    contact the list B[0],...,B[n-1]    
+
+### 思考题
+
+#### 8-1  
+**a.** 证明：对于n个互异的元素的输入，总共有 n! 种情况，在决策树的叶结点处完成排序，因此这 n! 种情况对应 n! 个叶结点，由于每种情况的概率相同，所以这 n! 个叶结点每个标有 1/n!,对于其它的叶结点标有 0  。  
+
+**b.** 证明：   
+D(T) = ∑左边叶结点深度 + ∑右边叶结点深度  = D(LT)+D(RT)+k  
+
+**c.** 证明：对与一棵有 k 个叶结点的树，叶结点可能分布在左右子树上，另外叶结点不可能单独在一棵子树上，因为假设在一颗子树上，必然会比在两颗子树上深度多1，然后左子树上的叶结点树可能情况有 i = {1,...,k-1},依次代入 **b.** 式子比较，即为最小值 min{d{i} + d{k-i} + k}    
+
+**d.**   
+令 f(i) = ilgi + (k-i)lg(k-i)    
+f'(i) = lgi - lg(k-i) = 0   
+i = k/2   
+f(k/2) = k(lgk-1)  
+d(k) = Ω(klgk)    
+
+**e.** 对于一个决策树，有 n! 个叶结点，代入 **d** 得：  
+D(T) = Ω(n!lgn!)     
+对于每一个叶结点所用的期望时间为 1/n! * Ω(n!lgn!) = Ω(nlgn)  
+
+**f.** 确定的排序算法A包含了 n! 种所有的情况，而B只是多了随机的一步，也包含在这 n! 种情况之中，其期望比较次数不会比A所有的之一少。  
+
+#### 8-2
+**a.** 计数排序即可   
+
+**b.**     
+
+    SORT(A)   
+    n = A.length   
+    j = n
+    i = 1  
+    while i < n && i < j
+      if A[i] == 1
+        while A[j] != 0 && j > i  
+          j = j - 1
+        exchange A[i] and A[j]
+        i = i + 1   
+
+**c.** 插入排序即可   
+
+**d.**   
+a 显然可以   
+b 不稳定  
+c 时间为O(n^2)    
+
+**e.**   
+ 
+
+#### 8-3    
+**a.**    
