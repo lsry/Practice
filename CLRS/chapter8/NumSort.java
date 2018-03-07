@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class NumSort
 {
 	/** 
@@ -54,6 +56,32 @@ public class NumSort
 		return sum;
 	}
 
+	public static void inPlaceCountSort(int[] arr,int n,int k){
+		int[] crr = new int[k+1];
+		for (int i = 0;i <= k;i++)         //赋初值0
+		{
+			crr[i] = 0;
+		}
+		for (int i = 0;i < n;i++)          //计算1，。。。，k的个数
+		{
+			crr[arr[i]]++;
+		}
+		for (int i = 1;i <= k;i++)        //计算对应的位置
+		{
+			crr[i] = crr[i] + crr[i-1];
+		}
+		for(int i=0;i!=n;++i){            //先把a数组全部变为0
+            arr[i]=0;  
+        } 
+		for (int i = k;i > 0;i--)          //从最后一个k出发
+		{
+			while(crr[i]!=crr[i-1]){       //如果相等，则代表 i=k 这个数一个都没有 
+                arr[crr[i]-1]=i;           //crr计算的是从1,..,n的位置，而arr从0开始
+                crr[i]--;  
+            }  
+		}
+	}
+
 	public static void display(int[] arr,int n){
 	    for (int i = 0;i < n;i++)
 	    {
@@ -64,9 +92,36 @@ public class NumSort
 
 	public static void main(String[] args) 
 	{
-		int[] a = new int[]{2,5,1,4,2,3,0,1};
-		int d = intervals(a,8,5,0,3);
-		display(a,8);
-        System.out.println(d);
+		System.out.println("Input length：" );
+		int length = 0;
+		Scanner in = new Scanner(System.in);
+		length = in.nextInt();
+		System.out.println("Input range：" );
+		int k = 4;
+		k = in.nextInt();
+		int[] a = new int[length];
+		for (int i = 0;i < length;i++)          
+		{
+			a[i] = (int)(1 + k * Math.random());
+		}
+		display(a,length);
+		inPlaceCountSort(a,length,k);
+        display(a,length);
+
+		int j = 0;
+		System.out.println("Input times：" );
+		j = in.nextInt();
+		while (j >= 0)
+		{
+            for (int i = 0;i < length;i++)          
+		    {
+			    a[i] = (int)(1 + k * Math.random());
+		    }
+		    display(a,length);
+		    inPlaceCountSort(a,length,k);
+            display(a,length);
+			j--;
+            System.out.println();
+		}
 	}
 }
