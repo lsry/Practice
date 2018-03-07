@@ -189,8 +189,7 @@ a 显然可以
 b 不稳定  
 c 时间为O(n^2)    
 
-**e.**   
- 
+**e.**  [inPlaceCountSort，但是不稳定](NumSort.java)
 
 #### 8-3    
 **a.**    
