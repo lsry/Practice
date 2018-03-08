@@ -56,6 +56,12 @@ public class NumSort
 		return sum;
 	}
 
+    /** 
+	* 原址计数排序
+	* @param arr 数组
+	* @param n 元素个数
+	* @param k arr中出现的最大的数 范围[1,...,k]
+	*/
 	public static void inPlaceCountSort(int[] arr,int n,int k){
 		int[] crr = new int[k+1];
 		for (int i = 0;i <= k;i++)         //赋初值0
