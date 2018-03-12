@@ -3,3 +3,6 @@
 
 # Ignore all backup files
 *.bak
+
+# ignore all executive files
+*.exe
