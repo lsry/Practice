@@ -174,13 +174,107 @@ public class Select
 		}
 	}
 
+    /**
+	* 找 k 分位数 with bugs
+	* @param arr 数组
+	* @param p 数组首元素索引
+	* @param q 数组尾元素索引
+	*/
+	public static void kthQuantities(int[] arr,int p,int q,int k){
+	    int n = q - p + 1;            //数组长度
+		if (k <= 1 || n/k == 0)
+		{
+			return;
+		}
+		int t = k / 2;               //求取第 k/2 个分位数
+		System.out.println("t = "+t);
+		int pos = (n%k == 0 ? n / k * t : (n/k+1)*t);   //第 k/2 个分位数对应的位置
+		System.out.println("pos = "+pos);
+		System.out.println(linerSelected(arr,p,q,pos));
+		if (k % 2 == 0)
+		{
+            kthQuantities(arr,p,pos-2,t);
+            kthQuantities(arr,pos,q,t+1);
+		}else{
+		    kthQuantities(arr,p,pos-2,t);
+            kthQuantities(arr,pos,q,t);
+		}
+		
+	}
+    
+	/**
+	* 最接近中位数的k个元素  距离各异
+	* @param arr 数组
+	* @param p 数组首元素索引
+	* @param q 数组尾元素索引
+	*/
+    public static void kCloseMedim(int[] arr,int n,int[] brr,int k){
+	    int med = linerSelected(arr,0,n-1,n/2);              //求中位数
+		int[] c = new int[n];
+		for (int i = 0;i < n;i++)
+		{
+			c[i] = arr[i] > med ? arr[i] - med : med - arr[i];      //为每个元素到中位数的距离
+		}
+        int med1 = linerSelected(c,0,n-1,k);           //距离的中位数
+		int j = 0;
+		for (int i = 0;i < n;i++)
+		{
+			if (j >= k)
+			{
+				break;
+			}
+			if (0-med1 <= arr[i] - med && arr[i] - med <= med1)
+			{
+				brr[j] = arr[i];
+                j++;
+			}
+		}
+	}
+
+   /**
+	* 求两个有序数组的下中位数
+	* @param arr brr 数组
+	* @param p r 数组首元素索引
+	* @param q s 数组尾元素索引
+	*/
+	public static int twoArraryMedim(int[] arr,int p, int q,int[] brr,int r,int s){
+	    if (p+1 == q || r+1 == s){        //当每个数组仅剩下两个时，求其中位数
+			if (arr[p] < brr[r])
+			{
+				return arr[q] < brr[r] ? arr[q] : brr[r];
+			}else {
+			    return arr[p] < brr[s] ? arr[p] : brr[s];
+			}
+	    }else{
+			//求中间位置元素索引
+			int x = (q + p + 1)/2;
+			int y = (s + r + 1)/2;
+			if ((q - p + 1)%2 == 0 || (s - r + 1)%2 == 0)      //若里面有偶数个元素
+			{
+				if (arr[x] == brr[y-1]){                       //一个求上中位数，另一个为下中位数
+			        return arr[x];
+			    }else if (arr[x] < brr[y-1]){
+			        return twoArraryMedim(arr,x-1,q,brr,r,y);
+			    }else {
+			        return twoArraryMedim(arr,p,x,brr,y-1,s);
+			    }
+			}else {                                            //若里面有奇数个元素
+				if (arr[x] == brr[y]){
+			        return arr[x];
+			    }else if (arr[x] < brr[y]){
+			        return twoArraryMedim(arr,x,q,brr,r,y);
+			    }else {
+			        return twoArraryMedim(arr,p,x,brr,y,s);
+			    }
+			}
+		}
+	}
+
 	public static void main(String[] args) 
 	{
-		int[] a = new int[]{3,6,2,8,1,4,9,10};
-		for (int i = 0;i < 8;i++)
-		{
-			int t = linerSelected(a,0,7,i+1);
-			System.out.println("第" + (i+1) + "小元素为" + t);
-		}
+		int[] a = new int[]{1,100,200,300,400,500};
+		int[] b = new int[]{5,8,205,304,392,505};
+		System.out.println(twoArraryMedim(a,0,5,b,0,5));
+		
 	}
 }
