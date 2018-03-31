@@ -10,7 +10,7 @@ public class LineMaxSubArray
 	public static int[] findMaxSubArray(int[] arr, int low,int high){
 	    int left = 0;          //left:最大子数组左边索引
 		int right = 0;         //right:最大子数组右边索引
-		int msum = 0;          //msum:最大子数组的和
+		int msum = -100;       //msum:最大子数组的和   建议初始值应该比数组的最小值要小，如果全是负数，否则会发生错误
 		int cur = 0;           //cur:子数组的和为正值时的左边索引值（可能的最大子数组的左边索引值）
 		int sum = 0;           //sum:以此计算子数组和
         for (int i = 0;i <= high;i++)
@@ -23,7 +23,7 @@ public class LineMaxSubArray
 				right = i;
 			}
 			                   //也可能下一个为负数，若和不小于零，则不用做任何事
-			else if (sum < 0)  //遇到负数并且小于零，则最大子数组不可能以负值开头
+			if (sum < 0)  //遇到负数并且小于零，则最大子数组不可能以负值开头   这里不应该是else if ，否则某些情况下会有未知错误
 			{
 				sum = 0;
 				cur = i+1;
@@ -36,8 +36,8 @@ public class LineMaxSubArray
 	
 	public static void main(String[] args) 
 	{
-		int[] array = new int[]{13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,-7};
-		int[] result = findMaxSubArray(array,0,15);
+		int[] array = new int[]{-3,-2,-1,-2,-3};
+		int[] result = findMaxSubArray(array,0,4);
 		System.out.println("left: " + result[0]);
 		System.out.println("right: " + result[1]);
 		System.out.println("sum: " + result[2]);
