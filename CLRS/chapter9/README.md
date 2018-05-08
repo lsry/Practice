@@ -78,4 +78,26 @@ T(n) = 2T(k/2) + O(n) = O(nlgk)
 ### 思考题  
 
 #### 9-1  
-**a.** 
+**a.** O(nlgn + i)  
+
+**b.** O(n + ilgi)  
+
+**c.** O(ilgi + n)   
+
+#### 9-2   
+**a.**     
+假设 wi 为中位数，那么 i = n/2    
+当 1 <= x < n/2  ∑wx  = 1/n * (n/2-1) < 1/2    
+当 n/2 < x <= n , ∑wx = 1/n * (n-n/2-1) < 1/2     
+
+**b.**  
+
+    Inter(A)  
+    quick-sort(A)
+    sum = A[0]
+    for i = 1 to n  
+      sum += A[i]
+      if sum > 1/2
+        return A[i]
+
+**c.** 
