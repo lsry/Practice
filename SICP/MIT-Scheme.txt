@@ -1,7 +1,7 @@
-# ���أ�
+# 下载：
 http://www.gnu.org/software/mit-scheme/
 
 question
 #1 win10 : requested allocation is too large 
-answer���һ���ݷ�ʽ��ѡ�����ԣ��ں���ȥ��--edit ����--heap 512 
-ע�������ֿ�����һ�����ʵĴ�С��һ��Ϊ512
+answer：右击快捷方式，选中属性，在后面去掉--edit 加上--heap 512 
+注：该数字可以是一个合适的大小，一般为512
