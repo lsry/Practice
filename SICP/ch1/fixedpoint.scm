@@ -17,11 +17,12 @@
 	(try guess)
 )
 
-(define (sqrt x)
+; compute y^2 = x -> y = ?
+(define (sqrt0 x)
   (fixed-point (lambda (y) (/ (+ y (/ x y)) 2.0)) 1.0)
 )
 
-; 1.36 
+; 1.36 compute y^y = x -> y = ?
 (define (xx x)
   (define (fixed-point f guess)
     (define tolerance 0.000001)
@@ -47,3 +48,20 @@
   )
   (fixed-point (lambda (y) (/ (+ y (/ (log x) (log y))) 2.0)) 2.0)
 )
+
+(define (average-damp f)
+  (define (average a b)
+    (/ (+ a b) 2.0)
+  )
+	(lambda (x) (average x (f x)))
+)
+
+(define (sqrt1 x)
+  (fixed-point (average-damp (lambda (y) (/ x y))) 1.0)
+)
+
+(define (cube-root x)
+  (fixed-point (average-damp (lambda (y) (/ x (* y y)))) 1.0)
+)
+
+
