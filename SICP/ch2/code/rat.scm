@@ -2,7 +2,7 @@
   (define (gcd a b)
     (if (= 0 b) a (gcd b (remainder a b)))
   )
-  (let ((g (gcd n d))) (cons (/ n g) (/ d g)))
+  (let ((g (gcd n d))) (if (< (/ d g) 0) (cons (* -1 (/ n g)) (* -1 (/ d g))) (cons (/ n g) (/ d g))))
 )
 
 (define (numer x)
@@ -35,8 +35,8 @@
 
 (define (print-rat x)
   (newline)
-	(display (numer x))
-	(display "/")
-	(display (denom x))
+  (display (numer x))
+  (display "/")
+  (display (denom x))
 )
 
