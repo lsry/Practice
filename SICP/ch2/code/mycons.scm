@@ -10,7 +10,7 @@
   (object 0)
 )
 
-(define (object object)
+(define (cdr1 object)
   (object 1)
 )
 
