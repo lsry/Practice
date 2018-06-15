@@ -116,3 +116,66 @@
 
 (define a (make-center-percent 6.8 10))
 
+; 2.14
+(define (par1 r1 r2)
+  (div-interval (mul2-interval r1 r2) 
+                (add-interval r1 r2)
+  )
+)
+
+(define (par2 r1 r2)
+  (let ((one (make-interval 1 1))) 
+       (div-interval one (add-interval (div-interval one r1) (div-interval one r2)))
+  )
+)
+
+; test
+(define a 
+  (make-interval 100 200)
+)
+
+(define b 
+  (make-interval 300 600)
+)
+
+(print-interval (par1 a b))
+(print-interval (par2 a b))
+
+(define a1 
+  (make-center-percent 100 30)
+)
+
+(define b1 
+  (make-center-percent 200 50)
+)
+(newline)
+(newline)
+(display "A/A and A/B big percent: ")
+(print-interval (div-interval a1 a1))
+(print-interval (div-interval a1 b1))
+
+(define a2 
+  (make-center-percent 100 3)
+)
+
+(define b2
+  (make-center-percent 200 5)
+)
+(newline)
+(newline)
+(display "A/A and A/B small percent: ")
+(print-interval (div-interval a2 a2))
+(print-interval (div-interval a2 b2))
+
+(define a3 
+  (make-center-percent 100 0.3)
+)
+
+(define b3
+  (make-center-percent 200 0.5)
+)
+(newline)
+(newline)
+(display "A/A and A/B smaller percent: ")
+(print-interval (div-interval a3 a3))
+(print-interval (div-interval a3 b3))
