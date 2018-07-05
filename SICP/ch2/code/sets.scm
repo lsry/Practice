@@ -1,0 +1,92 @@
+(define (element-of-set x set)
+  (cond ((null? set) #f)
+        ((equal? x (car set)) #t)
+        (else (element-of-set x (cdr set)))        
+  )
+)
+
+(define (adjoin-set x set)
+  (if (element-of-set x set) set (cons x set))
+)
+
+(define (intersection-set set1 set2)
+  (cond ((or (null? set1) (null? set2)) '())
+        ((element-of-set (car set1) set2) (cons (car set1) (intersection-set (cdr set1) set2)))
+        (else (intersection-set (cdr set1) set2))
+  )
+)
+
+; 2.59
+(define (union-set set1 set2)
+  (cond ((null? set1) set2)
+        ((null? set2) set1)
+        ((element-of-set (car set1) set2) (union-set (cdr set1) set2))
+        (else (cons (car set1) (union-set (cdr set1) set2)))        
+  )
+)
+
+; 2.60
+(define (element-of-list x ls)
+  (cond ((null? ls) #f)
+        ((equal? x (car ls)) #t)
+        (else (element-of-set x (cdr ls)))        
+  )
+)
+
+(define (adjoin-list x ls)
+  (cons x ls)
+)
+
+(define (union-list ls1 ls2)
+  (if (null? ls1) ls2
+      (cons (car ls1) (union-list (cdr ls1) ls2))
+  )
+)
+
+(define (intersection-list ls1 ls2)
+  (cond ((or (null? ls1) (null? ls2)) '())
+        ((element-of-list (car ls1) ls2) (cons (car ls1) (intersection-list (cdr ls1) ls2)))
+        (else (intersection-list (cdr ls1) ls2))
+  )
+)
+
+
+(define (element-of-order x order)
+  (cond ((null? order) #f)
+        ((< x (car order)) #f)
+        ((= x (car order)) #t)
+        (else (element-of-order x (cdr order)))      
+  )
+)
+
+(define (intersection-order or1 or2)
+  (if (or (null? or1) (null? or2)) '()
+      (let ((x1 (car or1))
+            (x2 (car or2))
+           )
+           (cond ((= x1 x2) (cons x1 (intersection-order (cdr or1) (cdr or2))))
+                 ((< x1 x2) (intersection-order (cdr or1) or2))
+                 ((> x1 x2) (intersection-order or1 (cdr or2)))
+           )
+      )
+  )
+)
+
+; 2.61
+(define (adjoin-order x order)
+  (cond ((null? order) (list x))
+        ((= x (car order)) order)
+        ((< x (car order)) (cons x order))
+        (else (cons (car order) (adjoin-order x (cdr order))))        
+  )
+)
+
+; 2.62
+(define (union-order or1 or2)
+  (cond ((null? or1) or2)
+        ((null? or2) or1)
+        ((= (car or1) (car or2)) (cons (car or1) (union-order (cdr or1) (cdr or2))))
+        ((< (car or1) (car or2)) (cons (car or1) (union-order (cdr or1) or2)))
+        (else (cons (car or2) (union-order or1 (cdr or2))))
+  )
+)
