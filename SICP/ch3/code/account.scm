@@ -81,6 +81,15 @@
 )
 (define acc (make-account2 100 'abc))
 
+; 3.7
+(define (make-join acc old-password new-password)
+  (define (dispatch word ins)
+    (if (eq? word new-password) (acc old-password ins) (error "WRONG PASSWORD"))    
+  )
+  dispatch
+)
+
+
 ; 3.1 
 (define (make-accum sum)
   (lambda (num) 
