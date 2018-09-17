@@ -1,0 +1,192 @@
+(define (front-ptr ueu)
+  (car ueu)
+)
+
+(define (rear-ptr ueu)
+  (cdr ueu)
+)
+
+(define (set-front-ptr! ueu item)
+  (set-car! ueu item)
+)
+
+(define (set-rear-ptr! ueu item)
+  (set-cdr! ueu item)
+)
+
+(define (empty-ueu? ueu)
+  (null? (front-ptr ueu))
+)
+
+(define (make-ueu)
+  (cons '() '())
+)
+
+(define (front-ueu ueu)
+  (if (empty-ueu? ueu) (error "FRONT called with an empty queue" ueu)
+      (car (front-ptr ueu))
+  )
+)
+
+(define (insert-ueu! ueu item)
+  (let ((new-pair (cons item '()))) 
+       (cond ((empty-ueu? ueu) (set-front-ptr! ueu new-pair)
+                                   (set-rear-ptr! ueu new-pair)
+                                   ueu
+             )
+             (else (set-cdr! (rear-ptr ueu) new-pair)
+                   (set-rear-ptr! ueu new-pair)
+                   ueu
+             )
+       )
+  )
+)
+
+(define (delete-ueu! ueu)
+  (cond ((empty-ueu? ueu) (error "DELETE! called with empty queue" ueu))
+        (else (set-front-ptr! ueu (cdr (front-ptr ueu))) ueu) 
+  )
+)
+
+(define (print-ueu ueu)
+  (car ueu)
+)
+
+; 3.22
+(define (make-qu)
+  (let ((front-ptr '())
+        (rear-ptr '())
+       ) 
+       (define (empty?)
+         (null? front-ptr)
+       )
+       (define (front)
+         (if (empty?) (error "FRONT called with an empty queue")
+             (car front-ptr)
+         )
+       )
+       (define (insert v)
+         (let ((inlist (list v))) 
+              (cond ((empty?)
+                     (set! front-ptr inlist)
+                     (set! rear-ptr inlist)
+                     front-ptr
+                    )
+                    (else (set-cdr! rear-ptr inlist)
+                          (set! rear-ptr inlist)
+                          front-ptr
+                    )
+              )
+         )
+       )
+       (define (delete)
+         (cond ((empty?) (error "FRONT called with an empty queue"))
+               (else (set! front-ptr (cdr front-ptr)) front-ptr)
+         )
+       )
+       (define (dispatch m)
+         (cond ((eq? m 'empty?) empty?)
+               ((eq? m 'front) front)
+               ((eq? m 'insert) insert)
+               ((eq? m 'delete) delete)
+               (else (error "WRONG -- DISPATCH" m))
+         )
+       )
+       dispatch
+  )
+)
+
+(define (empty-qu? q)
+  ((q 'empty?))
+)
+
+(define (front-qu q)
+  ((q 'front))
+)
+
+(define (insert-qu q v)
+  ((q 'insert) v)
+)
+
+(define (delete-qu q)
+  ((q 'delete))
+)
+
+; 3.23 
+(define (front-ptr-deque deque)
+  (car deque)
+)
+
+(define (rear-ptr-deque deque)
+  (cdr deque)
+)
+
+(define (set-front-ptr-deque! deque item)
+  (set-car! deque item)
+)
+
+(define (set-rear-ptr-deque! deque item)
+  (set-cdr! deque item)
+)
+
+(define (make-deque)
+  (cons '() '())
+)
+
+(define (empty-deque? deque)
+  (null? (front-ptr-deque deque))
+)
+
+(define (front-deque deque)
+  (if (empty-deque? deque) (error "FRONT called with an empty deque") 
+      (car (front-ptr-deque deque))
+  )
+)
+
+(define (rear-deque deque)
+  (if (empty-deque? deque) (error "FRONT called with an empty deque") 
+      (car (rear-ptr-deque deque))
+  )
+)
+
+(define (front-insert-deque! deque item)
+  (let ((inlist (list item '() '()))) 
+       (cond ((empty-deque? deque) 
+              (set-front-ptr-deque! deque inlist)
+              (set-rear-ptr-deque! deque inlist)
+              deque
+             )
+             (else (set-car! (cdr (front-ptr-deque deque)) inlist)
+                   (set-front-ptr-deque! deque inlist)
+                   deque
+             )
+       )
+  )
+)
+
+(define (rear-insert-deque! deque item)
+  (let ((inlist (list item '() '()))) 
+       (cond ((empty-deque? deque) 
+              (set-front-ptr-deque! deque inlist)
+              (set-rear-ptr-deque! deque inlist)
+              deque
+             )
+             (else (set-cdr! (cdr (rear-ptr-deque deque)) inlist)
+                   (set-rear-ptr-deque! deque inlist)
+                   deque
+             )
+       )
+  )
+)
+
+(define (front-delete-deque! deque)
+  (if (empty-deque? deque) (error "FRONT called with an empty deque") 
+      (set-front-ptr-deque! deque (cdr (cdr front-ptr-deque)))
+  )
+)
+
+(define (rear-delete-deque! deque)
+  (if (empty-deque? deque) (error "FRONT called with an empty deque") 
+      (set-rear-ptr-deque! deque (car (cdr rear-ptr-deque)))
+  )
+)
