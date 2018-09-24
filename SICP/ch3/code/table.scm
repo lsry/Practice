@@ -186,6 +186,39 @@
   )
 )
 
-(define m (make-mul-table))
-((m 'insert-mul-proc) '(a b) 2)
-((m 'lookup-mul-proc) '(a b))
+;(define m (make-mul-table))
+;((m 'insert-mul-proc) '(a b) 2)
+;((m 'lookup-mul-proc) '(a b))
+
+(define (fib n)
+  (cond ((= n 0) 0)
+        ((= n 1) 1)
+        (else (+ (fib (- n 1)) (fib (- n 2))))
+  )
+)
+
+(define (memorize f)
+  (let ((table (make-table))) 
+       (lambda (x) 
+         (let ((previously-computed-result (lookup-single x table)))
+              (or previously-computed-result 
+                  (let ((result (f x))) 
+                        (insert-single! x result table) result
+                  )
+              )
+         )
+       )
+  )
+)
+
+(define memo-fib
+  (memorize (lambda (n) 
+              (cond ((= n 0) 0)
+                    ((= n 1) 1)
+                    (else (+ (memo-fib (- n 1)) (memo-fib (- n 2))))
+              )
+            )
+  )
+)
+
+(define memo-fib2 (memorize fib))
