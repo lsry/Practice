@@ -98,6 +98,6 @@ T(n) = 2T(k/2) + O(n) = O(nlgk)
     for i = 1 to n  
       sum += A[i]
       if sum > 1/2
-        return A[i]
+        return A[i-1]
 
-**c.** 
+**c.**
