@@ -32,6 +32,14 @@ public class MyQueue
         }
     }
 
+    public boolean isEmpty(){
+        return tail == head;
+    }
+
+    public boolean isFull(){
+        return (tail+1)%capacity == head;
+    }
+
     public int length(){
         return (tail - head + capacity) % capacity;
     }

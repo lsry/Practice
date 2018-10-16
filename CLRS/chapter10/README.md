@@ -20,3 +20,20 @@
 [MyDeQueue](code/MyDeQueue.java)
 
 #### 10.1-6     
+[StackToQueue](code/StackToDequeu.java)
+
+**入队时间：**        
+直接进栈1即可，时间O(1)     
+**出队时间：**        
+由于出队过程发生在栈2，而入队过程在栈1，元素存在从栈1到栈2的移动过程，所以时间O(n)      
+
+#### 10.1-7     
+[QueueToStack](code/QueueToStack.java)      
+**入栈时间：**        
+直接在有元素的队列入队即可，时间O(1)     
+**出栈时间：**     
+需要将有元素的队列前length - 1个元素移动到空队列中，然后出最后一个元素，时间O(n)        
+
+### 10.2 链表      
+
+#### 10.2-1       

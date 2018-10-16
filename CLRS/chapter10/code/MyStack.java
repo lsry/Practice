@@ -21,6 +21,10 @@ public class MyStack
         return top == -1;
     }
 
+    public boolean isFull(){
+        return top == capacity - 1;
+    }
+
     public void push(int x) throws FlowException{
         if (top+1 >= capacity)
         {
