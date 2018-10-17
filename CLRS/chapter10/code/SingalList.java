@@ -13,22 +13,54 @@ class Node {
 
 public class SingalList{
     public Node nil;
+    public Node last;
 
     public SingalList(){
         nil = new Node();
+        nil.next = nil;
+        last = nil;
     }
 
-    public void insert(Node n){
+    public void insertFromHead(Node n){
         n.next = nil.next;
-        n.prev = nil;
         nil.next = n;
+    }
+
+    public Node delHeadNode(){
+        Node n = nil.next;
+        if (n.next == nil){
+            last = nil;
+        }
+        nil.next = nil.next.next;
+        return n;
+    }
+
+    public void insertFromTail(Node n){
+        n.next = last.next;
+        last.next = n;
+        last = n;
+    }
+
+    /*
+    * 10.2-7
+    * 先提取nil,形成一个空链表，然后遍历每一个元素，用头插法插到该链表中
+    */
+    public void reverse(){
+        Node head = nil.next;
+        nil.next = nil;
+        while (head != nil){
+            Node temp = head.next;
+            head.next = nil.next;
+            nil.next = head;
+            head = temp;
+        }
     }
 
     @Override
     public String toString(){
         Node head = nil.next;
         String res = "";
-        while (head != null){
+        while (head != nil){
             res += head.key + " -> ";
             head = head.next;
         }
@@ -39,8 +71,10 @@ public class SingalList{
     public static void main(String[] args){
         SingalList sl = new SingalList();
         for (int i = 0;i < 5; i++){
-            sl.insert(new Node(i));
+            sl.insertFromTail(new Node(i));
         }
+        System.out.println(sl);
+        sl.reverse();
         System.out.println(sl);
     }
 }
