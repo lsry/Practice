@@ -1,5 +1,6 @@
 class FlowException extends Exception
 {
+    private static final long serialVersionUID = 123456789L;
     public FlowException(){}
     public FlowException(String msg){
         super(msg);
