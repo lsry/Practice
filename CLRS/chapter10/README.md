@@ -201,4 +201,48 @@
         print(root.left-child)
         print(root.right-sibling)           
 
-#### 10.4-5          
+#### [10.4-5 printTree](code/BiTree.java) 
+* 需要存有父结点地址的属性        
+* 根据当前访问结点cur和之前访问结点prev关系来遍历      
+  1. prev 为 cur 的父结点，表明正好第一次访问到当前结点，则继续向左访问即可          
+  2. prev 为 cur 的左孩子，表明左子树已经访问完毕，接下来访问右子树   
+  3. prev 为 cur 的右孩子，表明左右子树都访问完毕，回到父结点处    
+
+#### 10.4-6       
+    Node 
+      key   
+      left-child,right-sibling
+      bool  // true : 有有兄弟，false : 指向父结点    
+    
+    SEARCH(root)  
+      prev = root
+      cur = root.left-child
+      next = null
+      while cur != null
+        if cur == prev.left-child
+           next = cur.left-child
+           if nex == null 
+             next = cur.right-sibling
+        else 
+           next = cur.right-sibling
+        prev = cur
+        if prev.bool = false
+          cur = next.right-sibling
+        else
+          cur = next     
+      
+### 思考题       
+
+#### 10-1               
+ -|未排序的单链表|已排序的单链表|未排序的双向链表|已排序的双向链表
+ -|-|-|-|-      
+ SEARCH(L,k)| O(n)|O(n)|O(n)|O(n)       
+ INSERT(L,x)|O(1)|O(1)|O(1)|O(1)
+ DELETE(L,x)|O(n)|O(n)|O(1)|O(1)  
+ SUCCESSOR(L,x)|O(n)|O(1)|O(n)|O(1)       
+ PREDECESSOR(L,x)|O(n)|O(n)|O(n)|O(1) 
+ MINMUM(L)|O(n)|↑O(1) or ↓O(n)|O(n)|O(1)        
+ MAXMUN(L)|O(n)|↑O(n) or ↓O(1)|O(n)|O(1)           
+
+ #### 10-2        
+    
