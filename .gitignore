@@ -9,3 +9,4 @@
 
 # ignore files
 *.vsdx
+.vscode/settings.json
