@@ -20,7 +20,7 @@
 [MyDeQueue](code/MyDeQueue.java)
 
 #### 10.1-6     
-[StackToQueue](code/StackToDequeu.java)
+[StackToQueue](code/StackToQueue.java)
 
 **入队时间：**        
 直接进栈1即可，时间O(1)     
@@ -245,4 +245,63 @@
  MAXMUN(L)|O(n)|↑O(n) or ↓O(1)|O(n)|O(1)           
 
  #### 10-2        
-    
+ **a. 已排序的链表**        
+     
+    MAKE_HEAP(L)  //O(1)
+      return make-list(L)
+    INSERT(L,k)   //O(n)
+      insert-list(L,k) 
+    MINMUM(L)     //O(1)
+      return L.next    
+    EXTRACT-MIN(L)  //O(1)
+      temp = L.next
+      L = L.next
+      return temp
+    UNION(L1,L2)  
+      //case 1:      //O(n^2) 
+      while(L2 != null)
+        if search(L1,L2.key) == false
+          insert-list(L1,L2)
+          L2 = L2.next
+      //case 2 : like megre sort  O(n)
+        merge(L1,L2)
+
+**b. 未排序的链表**       
+
+    MAKE_HEAP(L)  //O(1)
+      return make-list(L)
+    INSERT(L,k)   //O(1)
+      insert-list(L,k) 
+    MINMUM(L)     //O(n)
+      temp = L
+      min = temp.key
+      while temp != null
+        if min > temp.key
+          min = temp.key
+        temp = temp.next    
+    EXTRACT-MIN(L)  //O(n)
+      temp = L
+      front = temp
+      min = temp
+      while temp != null
+        if min.key > temp.key
+          min = temp
+          front = min
+      front.next = min.next
+      return min
+    UNION(L1,L2)   //O(n)
+      temp = L1
+        while temp.next != null
+          temp = temp.next
+      temp.next = L2
+
+**c.Lists are unsorted, and dynamic sets to be merged are disjoint.**          
+与上面未排序类似         
+
+    UNION(L1,L2)   //O(n)
+      temp = L1
+        while temp.next != null
+          temp = temp.next
+      temp.next = L2
+
+#### 10-3        
