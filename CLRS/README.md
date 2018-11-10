@@ -17,3 +17,5 @@
 #### [第九章 中位数和顺序统计量](chapter9/README.md)
 
 #### [第十章 基本数据结构](chapter10/README.md)
+
+#### [第三十一章 数论算法](chapter31/README.md)
