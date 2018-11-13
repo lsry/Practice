@@ -137,3 +137,77 @@ KEY|VALUE
 #### 11.3-6    
 
 ### 11.4 开放寻址法  
+
+#### [11.4-1 OpenHash](code/OpenHash.java)
+**LINER PROBE:**        
+key 10 :  probe 10 ,  end  
+key 22 :  probe 0 ,  end        
+key 31 :  probe 9 ,  end       
+key 4 :  probe 4 ,  end        
+key 15 :  probe 4 ,    probe 5 ,  end         
+key 28 :  probe 6 ,  end        
+key 17 :  probe 6 ,    probe 7 ,  end          
+key 88 :  probe 0 ,    probe 1 ,  end          
+key 59 :  probe 4 ,    probe 5 ,    probe 6 ,    probe 7 ,    probe 8 ,  end              
+
+**SECOND PROBE:**                  
+key 10 :  probe 10 ,  end            
+key 22 :  probe 0 ,  end            
+key 31 :  probe 9 ,  end         
+key 4 :  probe 4 ,  end             
+key 15 :  probe 4 ,    probe 8 ,  end              
+key 28 :  probe 6 ,  end             
+key 17 :  probe 6 ,    probe 10 ,    probe 9 ,    probe 3 ,  end            
+key 88 :  probe 0 ,    probe 4 ,    probe 3 ,    probe 8 ,    probe 8 ,    probe 3 ,    probe 4 ,    probe 0 ,    probe 2 ,  end                   
+key 59 :  probe 4 ,    probe 8 ,    probe 7 ,  end         
+
+**DOUBLE PROBE:**            
+key 10 :  probe 10 ,  end            
+key 22 :  probe 0 ,  end               
+key 31 :  probe 9 ,  end            
+key 4 :  probe 4 ,  end            
+key 15 :  probe 4 ,    probe 10 ,    probe 5 ,  end         
+key 28 :  probe 6 ,  end              
+key 17 :  probe 6 ,    probe 3 ,  end             
+key 88 :  probe 0 ,    probe 9 ,    probe 7 ,  end           
+key 59 :  probe 4 ,    probe 3 ,    probe 2 ,  end           
+
+#### 11.4-2 
+
+    HASH-DELETE(T,k)
+      i = 0
+      repeat
+        j = h(k,i)
+        if T[j] == k
+          T[j] = DELETE  // 做一个删除标记，不能删除，否则无法查找到因为冲突而位于下一个位置的关键字
+          return j
+        i = i + 1
+      until i == m || T[j] == NIL
+      return NIL
+    
+    HASH-INSERT(T,k)
+      i = 0
+      repeat
+        j = h(k,i)
+        if T[j] == NIL || T[j] == DELETE  // 在DELETE处可添加  
+          T[j] = k
+          return j
+        i = i+ 1
+
+#### 11.4-3          
+**α = 3/4**  
+* 不成功：1 / (1 - 3/4) = 4         
+- 成功： 1/3/4 * ln (1 / (1 - 3/4)) = 4/3 * ln4 ≈ 1.848        
+
+**α = 7/8**            
+* 不成功：1 / (1 - 7/8) = 8        
+- 成功：8/7 * ln8 ≈ 2.3765           
+
+#### 11.4-4         
+
+
+#### 11.4-5      
+α = 0.717   
+1/(1 - α) = 2/α * ln(1/(1 - α))     
+
+### 11.5 完全散列 
