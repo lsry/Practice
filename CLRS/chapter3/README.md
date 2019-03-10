@@ -4,15 +4,18 @@
 
 #### 3.1-1
 
-证明： 假设 c1=-1 c2=1 f(n)>=0 g(n)>=0  
-c1(f(n)+g(n)) = -(f(n)+g(n))  
-c2(f(n)+g(n)) = (f(n)+g(n))  
-max(f(n),g(n)) = { f(n) f(n)>=g(n);  
-                   g(n) f(n)<g(n) }  
-max(f(n),g(n)) >= c1(f(n)+g(n))  
-max(f(n),g(n)) <= c2(f(n)+g(n))  
-则任意 n>= n0 存在 c1,c2  
-c1(f(n)+g(n)) <= max(f(n),g(n)) <= c2(f(n)+g(n))  
+证明：        
+因为 max(f(n),g(n)) = { [ f(n) f(n)>=g(n) ] ∨ [ g(n) f(n) < g(n) ] }  
+f(n) <= f(n) + g(n)          
+g(n) <= f(n) + g(n)       
+max(f(n),g(n)) <= f(n) + g(n)            
+另一方面：                    
+max(f(n),g(n)) >= f(n) >= 1/2 * f(n)     
+max(f(n),g(n)) >= g(n) >= 1/2 * g(n)             
+2 * max(f(n),g(n)) >= f(n) + g(n)         
+即： max(f(n),g(n)) >= 1/2 * [f(n) + g(n)]         
+所以存在 c1 = 1/2 , c2 = 1 使得：      
+c1 * [f(n) + g(n)] <= max(f(n),g(n)) <= c2 * [f(n) + g(n)]      
 所以 max(f(n),g(n)) = Θ(f(n)+g(n))  
 
 #### 3.1-2
@@ -22,8 +25,8 @@ c1(f(n)+g(n)) <= max(f(n),g(n)) <= c2(f(n)+g(n))
 ln(c1n^b) <= bln(n+a) <= ln(c2n^b)  
 lnc1+blnn <= bln(n+a) <= lnc2+blnn  
 c1 <= (1+(a/n)^b) <=c2  
-则任意 n >= n0 存在 c1<1 c2>(1+(a/n)^b)  
-使得 （n+a)^b = Θ(n^b)  
+不妨取 n0 = 1 , 则存在 c1 <= 1 + a^b , c2 >= 1 + a^b      
+使得当 n > n0 , 有 (n+a)^b = Θ(n^b)  
 
 #### 3.1-3
 
@@ -66,18 +69,18 @@ f(n) = ω(g(n)) -> 任意 c2,n2 >0 when n>=n2,f(n) > c2g(n)
 ### 3.2 标准记号与常用函数
 
 #### 3.2-1
-1. f(n)+g(n) 单调递增   
-   设 n1<n2,f(n1)<f(n2) , g(n1)<g(n2)  
+1. f(n) + g(n) 单调递增   
+   设 n1 < n2,f(n1)< f(n2) , g(n1)< g(n2)  
    f(n1)+g(n1) - (f(n1)+g(n2))  
    = f(n1)-f(n2) + g(n1)-g(n2)  
    < 0  
 
 2. f(g(n)) 单调递增  
-   设 n1<n2,f(n1)<f(n2) , g(n1)<g(n2)
+   设 n1 < n2,f(n1)< f(n2) , g(n1) < g(n2)
    f(g(n1))-f(g(n2)) < 0  
 
 3. f(n) * g(n) 单调递增  
-  设 n1<n2,f(n1)<f(n2) , g(n1)<g(n2)  
+  设 n1 < n2,f(n1) < f(n2) , g(n1) < g(n2)  
   f(n1) * g(n1) - f(n2) * g(n2) < 0  
 
 #### 3.2-2
