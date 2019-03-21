@@ -11,7 +11,8 @@ public class QuickSort
 	public static void quickSort(int[] arr,int p,int q){
 	    if (p < q)
 	    {
-			int r = hoarePartition(arr,p,q);
+			int r = partition2(arr,p,q);
+            System.out.println("r: " + r);
 			quickSort(arr,p,r-1);
 			quickSort(arr,r+1,q);
 	    }
@@ -41,6 +42,35 @@ public class QuickSort
 		arr[q] = arr[i+1];
 		arr[i+1] = pe;
 		return i + 1;
+	}
+
+    /**
+    * 考虑所有元素都相等，返回中间序号
+    */
+    public static int partition2(int[] arr,int p,int q){
+	    int pivot = arr[q];
+		int i = p - 1;
+        boolean flag = true;
+		for (int j = p;j < q;j++)
+		{
+            if (arr[j] != pivot) {
+                    flag = false;
+            }
+			if (arr[j] <= pivot){ 
+				i++;
+				int d = arr[j];
+				arr[j] = arr[i];
+				arr[i] = d;
+			}
+		}
+        if (flag)
+        { 
+            return (p + q) / 2;
+        }else {
+            arr[q] = arr[i+1];
+		    arr[i+1] = pivot;
+		    return i + 1;
+        }
 	}
 
     /**
@@ -94,10 +124,8 @@ public class QuickSort
 
 	public static void main(String[] args) 
 	{
-		int[] a = new int[]{13,19,9,5,12,8,7,4,11,2,6,21};
-		quickSort(a,0,11);
+		int[] a = new int[]{4,4,4,4,4,4,4,4,4};
+        quickSort(a,0,a.length - 1);
 		System.out.println(Arrays.toString(a));
-		int[] b = new int[]{1,1,1,1,1};
-		System.out.println(partition(b,0,4));
 	}
 }

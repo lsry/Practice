@@ -246,7 +246,8 @@ public class BinSearchTree{
     }
 
     /*
-    * 将 sou 子树移动到 des 子树所在的位置上，没有更新移动后 sou 子树左右孩子结点的变化
+    * 将 sou 子树移动到 des 子树所在的位置上，
+    * 没有更新移动后 sou 子树左右孩子结点的变化
     * 只更改替换后子树的父结点左右孩子结点变化
     * @param des 源子树的根节点
     * @param sou 目的子树的根节点
