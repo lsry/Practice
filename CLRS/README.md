@@ -18,4 +18,10 @@
 
 #### [第十章 基本数据结构](chapter10/README.md)
 
+#### [第十一章 散列表](chapter11/README.md)         
+
+#### [第十二章 二叉搜索树](chapter12/README.md)       
+
+#### [第十三章 红黑树](chapter13/README.md)
+
 #### [第三十一章 数论算法](chapter31/README.md)
