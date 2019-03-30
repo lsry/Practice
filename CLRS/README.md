@@ -24,4 +24,8 @@
 
 #### [第十三章 红黑树](chapter13/README.md)
 
+#### [第十四章 数据结构的扩张](chapter14/README.md)
+
+#### [第十五章 动态规划](chapter15/README.md)
+
 #### [第三十一章 数论算法](chapter31/README.md)
