@@ -28,4 +28,6 @@
 
 #### [第十五章 动态规划](chapter15/README.md)
 
+#### [第十六章 贪心算法](chapter16/README.md)
+
 #### [第三十一章 数论算法](chapter31/README.md)
