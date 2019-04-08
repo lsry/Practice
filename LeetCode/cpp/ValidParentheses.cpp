@@ -10,7 +10,7 @@ using std::endl;
 
 
 /**
-* Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+* Giving a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 * The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
 */
 bool isValid(string s) {
