@@ -1,5 +1,5 @@
 ## Leetcode
 
-###### [1.Two Sum](cpp/TwoSum.cpp)
-###### [2.Integer Reverse](cpp/ReverseInteger.cpp)
-###### [3.Valid Parentheses](cpp/ValidParentheses.cpp)
+##### 0001 [C++](cpp/TwoSum.cpp) , [java](java/TwoSum.java)
+##### [2.C++ Integer Reverse](cpp/ReverseInteger.cpp)
+##### [3.C++ Valid Parentheses](cpp/ValidParentheses.cpp)
