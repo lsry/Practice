@@ -56,7 +56,7 @@ public class BinSearchTree{
         root = new Node(k);
     }
 
-    /*
+    /** 
     * 双指针法找需要插入的结点位置
     * @param k 插入的关键字
     */
@@ -83,7 +83,7 @@ public class BinSearchTree{
         }
     }
 
-    /*
+    /** 
     * 查找递归版本
     * @param k 关键字
     * @param base 遍历的开始位置
@@ -100,7 +100,7 @@ public class BinSearchTree{
         }
     }
 
-    /*
+    /**
     * 查找循环版本
     * @param k 关键字
     * @param s 区别递归标识
@@ -117,7 +117,7 @@ public class BinSearchTree{
         return temp;
     }
 
-    /*
+    /** 
     * 查找递归版本
     * @param k 关键字
     */
@@ -125,7 +125,7 @@ public class BinSearchTree{
         return searchRecur(root, k);
     }
 
-    /*
+    /** 
     * 中序遍历，递归版本
     * @param base 遍历的开始位置
     */
@@ -137,28 +137,37 @@ public class BinSearchTree{
         }
     }
 
-    /*
+    /** 
     * 中序遍历，迭代版本，使用栈
-    * @param base 遍历的开始位置
+    * @param base 遍历的开始结点
     */
     public void inOrderIterStack(Node base){
-        // 初始化一个栈
-        Node[] stack = new Node[100];  // 数组长度应该不小于树的结点数
-        int point = -1;
+        Node[] stack = new Node[100];  // 初始化一个栈，长度应该不小于树的高度
+        stack[0] = base;
+        int point = 0;
         Node cur = base;
-        while (cur != null) {
+        while (cur != null && point > -1) {
             if (cur.getLeft() != null) {
                 point++;
-                stack[point] = cur;
+                stack[point] = cur.getLeft();
                 cur = cur.getLeft();
             } else {
-                cur = stack[point];
-                point--;
+                while (point > -1){
+                    cur = stack[point];
+                    System.out.print(cur.getKey() + "  ");
+                    point--;
+                    if (cur.getRight() != null){
+                        point++;
+                        stack[point] = cur.getRight();
+                        cur = cur.getRight();
+                        break;
+                    } 
+                }               
             }
         }
     }
 
-    /*
+    /** 
     * 最小关键字结点
     * @param base 查找起始结点
     * @return temp 最小关键字结点
@@ -175,7 +184,7 @@ public class BinSearchTree{
         return minNodeFromBase(root);
     }
 
-    /*
+    /** 
     * 最大关键字结点
     * @return temp 最大关键字结点
     */
@@ -191,7 +200,7 @@ public class BinSearchTree{
         return maxNodeFromBase(root);
     }
 
-    /*
+    /** 
     * 查找当前结点中序遍历中的后继
     * @param cur 当前结点
     * @return 后继结点
@@ -219,7 +228,7 @@ public class BinSearchTree{
         return successor(cur);
     }
 
-    /*
+    /** 
     * 查找当前结点中序遍历的前驱
     * @param cur 当前结点
     * @return 后继结点
@@ -245,7 +254,7 @@ public class BinSearchTree{
         return predecessor(cur);
     }
 
-    /*
+    /** 
     * 将 sou 子树移动到 des 子树所在的位置上，
     * 没有更新移动后 sou 子树左右孩子结点的变化
     * 只更改替换后子树的父结点左右孩子结点变化
@@ -267,7 +276,7 @@ public class BinSearchTree{
         }
     }
 
-    /*
+    /** 
     * 删除 cur 结点
     * @param cur 要删除的结点
     */
@@ -303,6 +312,8 @@ public class BinSearchTree{
             tree.insert(a);
         }
         tree.inOrderRecur(tree.getRoot());
+        System.out.print("\n");
+        tree.inOrderIterStack(tree.getRoot());
         System.out.print("\n");
         tree.deleteNode(16);
         tree.inOrderRecur(tree.getRoot());
