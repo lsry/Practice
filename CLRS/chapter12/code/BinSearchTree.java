@@ -168,7 +168,7 @@ public class BinSearchTree{
     }
 
     /** 
-    * 最小关键字结点
+    * 最小关键字结点 ，循环版本       
     * @param base 查找起始结点
     * @return temp 最小关键字结点
     */
@@ -179,21 +179,49 @@ public class BinSearchTree{
         }
         return temp;
     }
+
+    /** 
+    * 最小关键字结点 ，递归版本       
+    * @param base 查找起始结点
+    */
+    private Node minNodeRecu(Node base){
+        if (base == null){
+            return null;
+        } else if (base.getLeft() == null){
+            return base;
+        } else {
+            return minNodeRecu(base.getLeft());
+        }
+    }
     
     public Node minNode(){
         return minNodeFromBase(root);
     }
 
     /** 
-    * 最大关键字结点
+    * 最大关键字结点 iter
     * @return temp 最大关键字结点
     */
-    public Node maxNodeFromBase(Node base){
+    private Node maxNodeFromBase(Node base){
         Node temp = base;
         while (temp != null && temp.getRight() != null){
             temp = temp.getRight();
         }
         return temp;
+    }
+
+    /** 
+    * 最大关键字结点 递归
+    * @return temp 最大关键字结点
+    */
+    private Node maxNodeRecu(Node base){
+        if (base == null){
+            return null;
+        } else if (base.getRight() == null){
+            return base;
+        } else {
+            return maxNodeRecu(base.getRight());
+        }
     }
     
     public Node maxNode(){
