@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Map;
 
 public class JewelsStones{
     public static int getJewelStones(String J,String S){

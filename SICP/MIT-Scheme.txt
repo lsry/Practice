@@ -6,8 +6,8 @@ question
 answer：右击快捷方式，选中属性，在后面去掉--edit 加上--heap 512 
 注：该数字可以是一个合适的大小，一般为512
 
-#2 how to use this interpreter? 
+#2 how to use this mit-scheme interpreter to execute? 
 answer: 
-A: writting code in a file named such as a.scm  
-B: cd to the place that the file a.scm is in  
-C: writting " (load "a.scm") " in the interpreter and you can run the code what you write in a.scm
+A: writting code in a file, named as a.scm for example
+B: cd to the place where the file a.scm exist  
+C: writting " (load "a.scm") " in the interpreter and you can run the code that you write in a.scm
