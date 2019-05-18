@@ -165,7 +165,7 @@ public class RBTree{
     }
 
     /** 
-    * 将 des 子树移动到 sou 子树所在的位置上，des ----> sou
+    * 将 des 子树移动到 sou 子树所在的位置上，des ----> sou               
     * 没有更新移动后 sou 子树左右孩子结点的变化，只更改替换后子树的父结点左右孩子结点变化
     * @param sou 源子树的根节点
     * @param des 目的子树的根节点
