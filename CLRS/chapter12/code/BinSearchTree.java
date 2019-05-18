@@ -83,6 +83,32 @@ public class BinSearchTree{
         }
     }
 
+    /**
+     * 插入的递归版本
+     * @param cur 插入树的根节点
+     * @param key 插入关键字
+     */
+    public void insertRecur(Node cur, int key){
+        Node in = new Node(key);
+        if (cur == null){
+            cur = in;
+        } else if (key < cur.getKey()) {
+            if (cur.getLeft() == null){
+                cur.setLeft(in);
+                in.setParent(cur);
+            } else {
+                insertRecur(cur.getLeft(), key);
+            }
+        } else {
+            if (cur.getRight() == null){
+                cur.setRight(in);
+                in.setParent(cur);
+            } else {
+                insertRecur(cur.getRight(), key);
+            }
+        }
+    }
+
     /** 
     * 查找递归版本
     * @param k 关键字
@@ -170,7 +196,7 @@ public class BinSearchTree{
     /** 
     * 最小关键字结点 ，循环版本       
     * @param base 查找起始结点
-    * @return temp 最小关键字结点
+    * @return 最小关键字结点
     */
     private Node minNodeFromBase(Node base){
         Node temp = base;
@@ -229,7 +255,7 @@ public class BinSearchTree{
     }
 
     /** 
-    * 查找当前结点中序遍历中的后继
+    * 查找当前结点中序遍历中的后继,为大于当前结点关键字的最小结点
     * @param cur 当前结点
     * @return 后继结点
     */
@@ -242,7 +268,7 @@ public class BinSearchTree{
         if (curr.getRight() != null){
             return minNodeFromBase(curr.getRight());
         }
-        // 2. 后继结点左子树的最大值为当前结点的值，即当前结点位于后继结点的左子树上，
+        // 2. 后继结点左子树的最大值的结点为当前结点，即当前结点位于后继结点的左子树上，
         Node y = curr.getParent();
         while (y != null && curr == y.getRight()){
             curr = y;
@@ -335,9 +361,9 @@ public class BinSearchTree{
 
     public static void main(String[] args) {
         int[] arr = new int[]{10,4,17,1,16,5,21};
-        BinSearchTree tree = new BinSearchTree();
+        BinSearchTree tree = new BinSearchTree(8);
         for (int a : arr){
-            tree.insert(a);
+            tree.insertRecur(tree.getRoot(),a);
         }
         tree.inOrderRecur(tree.getRoot());
         System.out.print("\n");
