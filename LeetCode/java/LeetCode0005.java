@@ -76,5 +76,6 @@ public class LeetCode0005{
         System.out.println(l5.longestPalindrome("abcba"));
         System.out.println(l5.longestPalindrome("abcbc"));
         System.out.println(l5.longestPalindrome("a"));
+        System.out.println(l5.longestPalindrome("character"));
     }
 }

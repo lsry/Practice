@@ -82,3 +82,99 @@
 3. 因此该方法排序时间：O(nlgn) ，最坏时间 O(n^2)               
 
 #### 12.3-4       
+不可交换，
+
+#### 12.3-5 
+
+    SEARCH(x,k)
+      t = x
+      while t != null && t.key != k
+       if t.key > k
+         t = t.left
+       else
+         t = t.right
+      return t;
+
+    // 插入左边不影响后继，右边需要在遍历时和当前结点后继比较大小，若小则后继为插入结点
+    insert(T,z)
+      y = null
+      x = T.root
+      while x != null
+        y = x
+        if x.key > z.key
+          x = x.left
+        else 
+          x = x.right
+          if y.succ != null
+            y.succ = (y.succ.key > z.key) ? z : y.succ
+      if y == null
+        T.root = z
+      else if y.key > z.key
+        y.left = z
+        z.parent = y
+      else 
+        y.right = z
+        y.succ = z
+        z.parent = y
+
+    // bugs
+    Delete(T,z)
+      if z.left == null
+        transplant(T,z,z.right)
+        z.parent.succ = Tree-min(T,z.right)
+      else if z.right == null
+        transplant(T,z,z.left)
+      else 
+        y = Tree-Min(T,z.right)
+        if y.parent != z
+          transplant(T,y,y,right)
+          y.right = z.right
+          y.right.parent = y
+          y.succ = Tree-min(T,y.right)
+        transplant(T,z,y)
+        y.left = z.left
+        y.left.parent = y
+        y.parent.succ = Tree-Min(y)
+
+#### 12.3-6     
+
+    Tree-Delete(T,z)
+      if z.left == null
+        transplant(T,z,z.right)  
+      else if z.right == null
+        transplant(T,z,z.left)
+      else
+        y = Tree-max(T,z.left)
+        if (y.parent != z)
+          transplant(T,y,y.left)
+          y.left = z.left
+          y.left.parent = y
+        transplant(T,z,y)
+        y.right = z.right
+        y.right.parent = y
+
+### 12.4 随机构建二叉搜索树
+
+#### 12.4-1   
+数学归纳法          
+![](img/1241.gif)       
+
+#### 12.4-2   
+**1. 描述：** 其中有一条路径的相对于其他叶结点深度较深      
+**2. 高度：** O(n)                 
+
+#### 12.4-3
+随机选择二叉树中，对于某位中间值 x 作为根的树，不会由于其大于 x 和小于 x 的相对顺序改变而改变树的形状，因此这两种视为一种情况，而随机构建二叉树将上述两种情况分开。   
+
+#### 12.4-4 
+求二阶导数   
+f(x) = 2^x , f''(x) = (ln2)^2 * 2^x > 0 恒成立，所以是凹函数  (convert function)               
+
+#### 12.4-5   
+
+### 思考题
+
+#### 12-1         
+**a.** 由于相等时总会选择一条默认路径，不妨总从大的方向走，因此 T(n) = O(n)              
+
+**b.** 
