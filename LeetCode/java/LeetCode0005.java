@@ -6,7 +6,7 @@ public class LeetCode0005{
         if (s == null || s.length() <= 0){
             return "";
         }
-        // 以下至少保证含有一个字符
+        // 以下保证至少含有一个字符
         int length = s.length();
         // 构建一个二维数组，b[i][j] == true 代表 S[i,...,j] 是回文串, 否则不是
         // boolean 数组默认值为 false

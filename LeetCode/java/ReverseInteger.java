@@ -1,22 +1,27 @@
 public class ReverseInteger{
 
+    /**
+     * 将字符串翻转
+     */
     public String stringReverse(String s){
         char[] array = s.toCharArray();  
-        String reverse = ""; 
+        StringBuilder reverse = new StringBuilder(); 
         int i = array.length - 1;
+        // 将末尾 0 消除，因为翻转过来不算整数的一部分
         while (array[i] == '0'){
             i--;
         } 
         for (; i >= 0; i--) {
-            reverse += array[i];  
+            reverse.append(array[i]);  
         }   
-        return reverse;  
+        return reverse.toString();  
     }
 
     public int reverse(int x) {
         if (x == 0){
             return 0;
         }
+        // 负数标志
         boolean isPos = false;
         String num = String.valueOf(x);
         String res = "";
@@ -40,5 +45,8 @@ public class ReverseInteger{
 
     public static void main(String[] args) {
         System.out.println(new ReverseInteger().reverse(1534236469));
+        System.out.println(new ReverseInteger().reverse(37890));
+        System.out.println(new ReverseInteger().reverse(-12987));
+        System.out.println(Integer.valueOf("000200"));
     }
 }
