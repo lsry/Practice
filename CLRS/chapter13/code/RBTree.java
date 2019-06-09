@@ -86,20 +86,21 @@ public class RBTree{
 
     private void insertFixup(RBNode z){
         while (z.parent.color == RBNode.RED) {
-            // 母亲结点位于祖先结点左边
+            // 母亲结点位于祖父结点左边，祖父结点必然是黑色的
             if (z.parent == z.parent.parent.left){
                 RBNode y = z.parent.parent.right;
-                if (y.color == RBNode.RED){           // case 1
+                if (y.color == RBNode.RED){           // case 1，叔结点为红色，
+                                                      //         父结点和叔结点同时变黑，z 上移两层
                     z.parent.color = RBNode.BLACK;
                     y.color = RBNode.BLACK;
                     z.parent.parent.color = RBNode.RED;
                     z = z.parent.parent;
                 } else {
-                    if (z == z.parent.right){                     // case 2
+                    if (z == z.parent.right){        // case 2，z 为右孩子 ，左旋到情况3
                         z = z.parent;
                         leftRotate(z);
                     }
-                    z.parent.color = RBNode.BLACK;                // case 3
+                    z.parent.color = RBNode.BLACK;      // case 3, z 父结点变黑，祖父结点变红，以祖父结点右旋
                     z.parent.parent.color = RBNode.RED;
                     rightRotate(z.parent.parent);
                 }
@@ -124,6 +125,10 @@ public class RBTree{
         root.color = RBNode.BLACK;
     }
 
+    /**
+     * 插入一个新结点，以红色插入
+     * @param n 新的红色结点
+     */
     public void insert(RBNode n){
         RBNode y = nil;
         RBNode x = root;
@@ -185,7 +190,7 @@ public class RBTree{
         while (x != root && x.color == RBNode.BLACK){
             if (x == x.parent.left){ 
                 RBNode w = x.parent.right;
-                if(w.color == RBNode.RED){
+                if(w.color == RBNode.RED){          // case 1,兄弟结点为红色，w 变黑，parent 变红，左旋
                     w.color = RBNode.BLACK;
                     x.parent.color = RBNode.RED;
                     leftRotate(x.parent);
@@ -236,6 +241,11 @@ public class RBTree{
         x.color = RBNode.BLACK;
     }
 
+    /**
+     * 删除结点 z
+     * x : 移动至 y 的原始位置
+     * y : 移动至 z 的原始位置
+     */
     public void deleteNode(RBNode z){
         RBNode y = z;
         boolean ycolor = y.color;
