@@ -5,6 +5,7 @@ class ListNode {
 }
 
 public class LeetCode0021{
+    // 类似归并排序子过程，需要建立头结点
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode head = new ListNode(0);
         ListNode h0 = head;
