@@ -141,7 +141,7 @@ public class Select
 	* 第 i 小元素 最坏时间线性 i = 1,2,...,n
 	* @param arr 需要排序的数组
 	* @param p 数组首元素索引
-	* @param r 数组尾元素索引
+	* @param q 数组尾元素索引
 	*/
 	public static int linerSelected(int[] arr,int p, int q,int i){
 	    int n = q - p + 1;                            //当前arr[p,...,q]数组个数
