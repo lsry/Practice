@@ -5,27 +5,31 @@ public class LeetCode0032{
         if (s == null || s.length() <= 0){
             return 0;
         }
-        int count = 0;
+        Stack<Integer> si = new Stack<>();
+        si.push(-1);
         int max = 0;
-        Stack<Character> sc = new Stack<>();
-        sc.push(s.charAt(0));
-        for (int i = 1; i < s.length();i++){
+        for (int i = 0; i < s.length();i++){
             char c = s.charAt(i);
             if (c == '('){
-                sc.push(c);
+                si.push(i);
             } else {
-                if (!sc.empty() && sc.peek() == '('){
-                    count += 2;
-                    sc.pop();
+                si.pop();
+                if (si.empty()){
+                    si.push(i);
                 } else {
-                    sc.push(c);
+                    max = Math.max(max, i - si.peek());
                 }
             }
         }
-        return count;
+        return max;
     }
 
     public static void main(String[] args) {
-        
+        LeetCode0032 l32 = new LeetCode0032();
+        System.out.println(")()()) 4 : " + l32.longestValidParentheses(")()())"));
+        System.out.println("(() 2 : " + l32.longestValidParentheses("(()"));
+        System.out.println("()(() 2 : " + l32.longestValidParentheses("()(()"));
+        System.out.println("()()))()(()()) 8 : " + l32.longestValidParentheses("()()))()(()())"));
+        System.out.println("() 2 : " + l32.longestValidParentheses("()"));
     }
 }
