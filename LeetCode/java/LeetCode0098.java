@@ -1,10 +1,3 @@
-class TreeNode{
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-}
-
 public class LeetCode0098{
     class Res{
         public boolean isvalid;

@@ -1,12 +1,5 @@
 import java.util.*;
 
-class TreeNode{
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-}
-
 public class LeetCode0095{
     public List<TreeNode> generateTrees(int n) {
         return generateHalf(1, n);

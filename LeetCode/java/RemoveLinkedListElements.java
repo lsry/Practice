@@ -1,12 +1,3 @@
-class ListNode {
-    ListNode next;
-    int val;
-    ListNode(int x) { 
-        val = x; 
-        next = null;
-    }
-}
-
 public class RemoveLinkedListElements{
     public ListNode removeElements(ListNode head, int val) {
         if (head == null){

@@ -1,10 +1,3 @@
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-}
-
 public class LeetCode0235{
     public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null){
