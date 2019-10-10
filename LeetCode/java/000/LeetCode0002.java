@@ -2,7 +2,7 @@
  * Leetcode 0002
  */
 
-public class AddTwoNumbers{
+public class LeetCode0002{
     /**
      * 遍历两个链表，依次将对应位置上数字相加，并记下进位
      * 当其中一个为空，则遍历另外一个链表，将数字加过来
