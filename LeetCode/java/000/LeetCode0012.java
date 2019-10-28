@@ -2,7 +2,7 @@ public class LeetCode0012{
     /**
      * 按位处理，根据每个数位判断
      */
-    public String intToRoman(int num) {
+    public String intToRomanDigit(int num) {
         StringBuilder sb = new StringBuilder();
         int n = num;
         int digit = n / 1000;
@@ -63,6 +63,23 @@ public class LeetCode0012{
         }
         return sb.toString();
     }
+
+    // 贪心选择最大的数，依次到最小
+    public String intToRoman(int num){
+        String[] roma = new String[]{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        int[] nums    = new    int[]{1000, 900, 500, 400,  100,  90,  50,   40,   10,  9,    5,   4,    1};
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0;i < roma.length;i++){
+            while(num >= nums[i]){
+                sb.append(roma[i]);
+                num -= nums[i];
+            }
+        }
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         LeetCode0012 l12 = new LeetCode0012();
         System.out.println("3: III,\t" + l12.intToRoman(3));
