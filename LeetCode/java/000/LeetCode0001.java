@@ -6,7 +6,7 @@ import java.util.HashMap;
  * You may assume that each input would have exactly one solution, and you may not use the same element twice.
  */
 
-public class TwoSum{
+public class LeetCode0001{
     /**
      * 以哈希表做基础，将第一个元素存入哈希表，
      * 从数组第二个开始遍历，查找需要的差值是否在表中，在，则返回对应索引，否则将当前数字存入表中。
