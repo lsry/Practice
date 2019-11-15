@@ -1,4 +1,8 @@
-public class LeetCode1163{
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class LeetCode1163 {
     class Node{
         public int key;
         public int first;

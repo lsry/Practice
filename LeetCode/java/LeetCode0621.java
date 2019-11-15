@@ -11,37 +11,27 @@ public class LeetCode0621 {
         for (int i = 0;i < tasks.length;i++){
             arr[tasks[i] - 'A'] ++;
         }
+        int sum = tasks.length;
         Arrays.sort(arr);
-        int first = 0;
-        for (;first < 26 && arr[first] == 0;first++);
-        
         int time = 0;
-        int notZero = 26 - first;
-        while (notZero != 0){
-            int x = 0;
-            int index = 25;
-            for (;x <= n;x++){
-                if (index < first){
-                    //System.out.print(x + "\t");
-                    if (notZero != 0) {
-                        time += n - x + 1;
-                    }
-                    
-                    break;
-                } else if (arr[index] != 0){
-                    time += 1;
-                    arr[index]--;
-                    if (arr[index] == 0){
-                        notZero -= 1;
-                    }
-                    index--;
-                } else if (arr[index] == 0){
-                    index--;
-                    x--;
-                    //notZero--;
+        while (arr[arr.length - 1] > 0){
+            time++;
+            arr[arr.length - 1]--;
+            sum--;
+            int inter = n;
+            for (int j = arr.length - 2;j >= 0 && inter > 0;j--){
+                if (arr[j] > 0){
+                    inter--;
+                    time++;
+                    arr[j]--;
+                    sum--;
                 }
             }
-            
+            if (sum > 0){
+                time += inter;
+            }
+            // 在于每次都要首先安排当次最多的那个任务
+            Arrays.sort(arr);
         }
         return time;
     }
