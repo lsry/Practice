@@ -1,5 +1,12 @@
+import java.util.Arrays;
+
 public class LeetCode0581{
-    public int findUnsortedSubarray(int[] nums) {
+    /**
+     * 1. 确定左边和右边的范围，保证两边均有序
+     * 2. 获得中间无序数组的最大和最小值
+     * 3. 向两边扩展，直到 num.left <= num.middle <= num.right
+     */
+    public int findUnsortedSubarrayExtend(int[] nums) {
         if (nums == null || nums.length <= 1){
             return 0;
         }
@@ -42,5 +49,25 @@ public class LeetCode0581{
             }
         }
         return ix;
+    }
+
+    /**
+     * 运用排序，然后比较不同的个数
+     */
+    public int findUnsortedSubarray(int[] nums) {
+        int[] numCopy = Arrays.copyOf(nums, nums.length);
+        Arrays.sort(numCopy);
+        int left = 0, right = numCopy.length - 1;
+        for (;left < numCopy.length;left++){
+            if (numCopy[left] != nums[left]){
+                break;
+            }
+        }
+        for (;right >= 0;right--){
+            if (numCopy[right] != nums[right]){
+                break;
+            }
+        }
+        return (left < right) ? (right - left + 1) : 0;
     }
 }
