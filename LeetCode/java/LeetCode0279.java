@@ -18,8 +18,9 @@ public class LeetCode0279{
             return 1;
         }
         int min = Integer.MAX_VALUE;
-        for (int i = 1;i <= n / 2;i++){
-            int num = helper(dp, i) + helper(dp, n - i);
+        // 优化点：只用遍历每一个平方数即可
+        for (int i = 1;i * i <= n / 2;i++){
+            int num = 1 + helper(dp, n - i * i);
             if (num < min){
                 min = num;
             }
